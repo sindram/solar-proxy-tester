@@ -6,30 +6,10 @@ For this reason a https call is made to the public API hosted by [NASA Predictio
 
 The tool should help to properly set up VC Publisher and avoid Proxy issues.
 
-## Setup
-### Prerequisites
-- Java 11
-- Gradle
-- Docker
-### Building
-1. **Clone the repository**:
-    ```sh
-    git clone https://github.com/yourusername/solar-proxy-tester.git
-    cd solar-proxy-tester
-    ```
-2. **Build the project**:
-    ```sh
-    ./gradlew build
-    ```
-3. **Create the Docker image**:
-    ```sh
-    ./gradlew buildDockerImage
-    ```
-
 ## Basic Usage
 1. **Run the Docker container**:
 ```sh
-    docker run -it -name solarproxytester solarproxytester:1.0.0
+    docker run -it --name solarproxytester ghcr.io/sindram/solar-proxy-tester:1.0.0
 ```
 2. **Open bash in Docker container**:
 ```sh
@@ -136,6 +116,28 @@ You are able to verify the registration of your certificate on the container `ba
    keytool -list -keystore /etc/ssl/certs/java/cacerts -storepass changeit
 ```
 The same is valid for other certificated e.g. ca-root certificates.
+
+## Setup
+If you want to adapt the code to your own needs, you need to build the tool. It is recommended to use official versions.
+
+### Prerequisites
+- Java 11
+- Gradle
+- Docker
+### Building
+1. **Clone the repository**:
+    ```sh
+    git clone https://github.com/sindram/solar-proxy-tester.git
+    cd solar-proxy-tester
+    ```
+2. **Build the project**:
+    ```sh
+    ./gradlew build
+    ```
+3. **Create the Docker image**:
+    ```sh
+    ./gradlew buildDockerImage
+    ```
 
 ## License
 This project is licensed under the MIT License.

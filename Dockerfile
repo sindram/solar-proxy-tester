@@ -1,5 +1,7 @@
 FROM ubuntu:22.04
 
+LABEL org.opencontainers.image.source="https://github.com/sindram/solar-proxy-tester"
+
 RUN apt-get update && \
     apt-get install -y openjdk-11-jdk-headless curl grep sed vim nano openssl && \
     apt-get clean && \

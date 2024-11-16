@@ -69,15 +69,44 @@ tasks.shadowJar {
 tasks.register<Exec>("buildDockerImage") {
     group = "docker"
     description = "Builds the Docker image and saves it to a file."
+
     dependsOn("shadowJar")
 
     val version = project.version.toString()
-    commandLine("docker", "build", "-t", "solarproxytester:$version", ".")
+
+    commandLine("docker", "build", "-t", "ghcr.io/sindram/solar-proxy-tester:$version", ".")
 
     doLast {
         exec {
-            commandLine("docker", "save", "-o", "build/libs/solarproxytester_image_${version}.tar", "solarproxytester:$version")
+            commandLine("docker", "save", "-o", "build/libs/solarproxytester_image_${version}.tar", "ghcr.io/sindram/solar-proxy-tester:$version")
         }
     }
 }
+
+tasks.register<Exec>("pushDockerImage") {
+    group = "docker"
+    description = "Tags and pushes the Docker image to GitHub Container Registry."
+
+    dependsOn("buildDockerImage")
+    dependsOn("dockerLogin")
+
+    val githubUsername = System.getenv("GITHUB_USERNAME") ?: error("GITHUB_USERNAME is not set")
+    val repositoryName = "solar-proxy-tester"
+    val version = project.version.toString()
+
+    commandLine("docker", "push", "ghcr.io/$githubUsername/$repositoryName:$version")
+}
+
+tasks.register<Exec>("dockerLogin") {
+    group = "docker"
+    description = "Logs in to GitHub Container Registry."
+
+    val githubToken = System.getenv("GITHUB_TOKEN") ?: error("GITHUB_TOKEN is not set")
+    val githubUsername = System.getenv("GITHUB_USERNAME") ?: error("GITHUB_USERNAME is not set")
+
+    commandLine("docker", "login", "ghcr.io", "-u", githubUsername, "--password-stdin")
+    standardInput = githubToken.byteInputStream()
+
+}
+
 
