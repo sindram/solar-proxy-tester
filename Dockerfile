@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 RUN apt-get update && \
-    apt-get install -y openjdk-11-jdk-headless curl grep sed && \
+    apt-get install -y openjdk-11-jdk-headless curl grep sed vim nano openssl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

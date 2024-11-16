@@ -80,3 +80,4 @@ tasks.register<Exec>("buildDockerImage") {
         }
     }
 }
+

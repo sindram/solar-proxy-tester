@@ -7,7 +7,12 @@ import java.net.http.HttpResponse;
 
 public class NasaApiClient {
 
-    private static final String API_URL = "https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=ALLSKY_SFC_SW_DWN,ALLSKY_SFC_SW_DIFF&community=RE&longitude=7.922605494683933&latitude=48.066150833174866&format=JSON";
+    private static final String API_URL = "https://power.larc.nasa.gov/api/temporal/climatology/point?" +
+            "parameters=ALLSKY_SFC_SW_DWN,ALLSKY_SFC_SW_DIFF&" +
+            "community=RE&" +
+            "longitude=7.922605494683933&" +
+            "latitude=48.066150833174866&" +
+            "format=JSON";
 
     public NasaApiClient() {}
 
