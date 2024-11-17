@@ -17,7 +17,7 @@ The tool should help to properly set up VC Publisher and avoid Proxy issues.
 ```
 3. **Change to working directory**:
 ```sh
-   cd /solar-proxy-tester/lib  
+   cd /solar-proxy-tester/libs  
 ```
 4. **Run Solar Proxy Tester**
 ```sh
